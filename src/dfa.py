@@ -164,7 +164,6 @@ class DFA(FiniteAutomaton):
     def _minimize_complete_dfa(self) -> "DFA":
         n = len(self.states)
 
-        # Reverse transitions
         reverse_transitions = {
             i: {symbol: [] for symbol in self.alphabet} for i in range(n)
         }
@@ -172,7 +171,6 @@ class DFA(FiniteAutomaton):
             for symbol, next_state in transitions.items():
                 reverse_transitions[next_state][symbol].append(state)
 
-        # Get reachable states
         reachable = set()
         stack = [self.start_state]
         while stack:
@@ -184,7 +182,6 @@ class DFA(FiniteAutomaton):
                     if next_state not in reachable:
                         stack.append(next_state)
 
-        # Build distinguishability table
         marked = [[False] * n for _ in range(n)]
         queue = []
 
@@ -203,7 +200,6 @@ class DFA(FiniteAutomaton):
                             marked[r][s] = marked[s][r] = True
                             queue.append((r, s))
 
-        # Group equivalent states
         component = [-1] * n
         components_count = 0
 
