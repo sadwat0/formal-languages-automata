@@ -1,0 +1,13 @@
+*/__pycache__
+.coverage
+vis.py
+test.py
+pdfa.py
+visual_utils.py
+htmlcov
+complex_testing.py
+main.py
+main.ipynb
+src/__init__.py
+tmp.md
+.pytest_cache
